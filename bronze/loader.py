@@ -54,7 +54,11 @@ def create_table(session, table_name, file_name):
 
     session.sql(query).collect()
 
-    print(f"Table '{table_name}' created.")
+    print(
+    session.sql(
+        f"SHOW TABLES LIKE '{table_name}' IN SCHEMA {DATABASE}.{SCHEMA}"
+    ).collect()
+)
 
 
 def copy_into_table(session, table_name, file_name):
