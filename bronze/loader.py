@@ -1,4 +1,5 @@
 import os
+import re
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -27,57 +28,54 @@ def upload_file(session, file_path):
 
 def create_table(session, table_name, file_name):
     """
-    Create a table from the parquet schema.
+    Create table from parquet schema with UPPERCASE column names.
     """
 
-    query = f"""
-    CREATE OR REPLACE TABLE {DATABASE}.{SCHEMA}.{table_name}
-
-    USING TEMPLATE (
-
-        SELECT ARRAY_AGG(OBJECT_CONSTRUCT(*))
-
-        FROM TABLE(
-
-            INFER_SCHEMA(
-
-                LOCATION => '@{DATABASE}.{SCHEMA}.{STAGE_NAME}/{file_name}',
-
-                FILE_FORMAT => '{DATABASE}.{SCHEMA}.{FILE_FORMAT_NAME}'
-
-            )
-
+    # Get inferred schema
+    infer_query = f"""
+    SELECT *
+    FROM TABLE(
+        INFER_SCHEMA(
+            LOCATION => '@{DATABASE}.{SCHEMA}.{STAGE_NAME}/{file_name}',
+            FILE_FORMAT => '{DATABASE}.{SCHEMA}.{FILE_FORMAT_NAME}'
         )
-
-    );
+    )
     """
 
-    session.sql(query).collect()
+    columns = session.sql(infer_query).collect()
 
-    print(
-    session.sql(
-        f"SHOW TABLES LIKE '{table_name}' IN SCHEMA {DATABASE}.{SCHEMA}"
-    ).collect()
-)
+    for row in columns[:3]:
+        print(row)
+
+    ddl = []
+
+    for col in columns:
+        name = f'"{col["COLUMN_NAME"]}"'
+        dtype = col["TYPE"]
+        ddl.append(f'{name} {dtype}')
+
+    create_query = f"""
+    CREATE OR REPLACE TABLE {DATABASE}.{SCHEMA}.{table_name} (
+        {", ".join(ddl)}
+    )
+    """
+    print(create_query)
+
+    session.sql(create_query).collect()
+
+    print(f"Table {table_name} created.")
 
 
 def copy_into_table(session, table_name, file_name):
-    """
-    Load one parquet file into its corresponding table.
-    """
-
     query = f"""
     COPY INTO {DATABASE}.{SCHEMA}.{table_name}
-
     FROM '@{DATABASE}.{SCHEMA}.{STAGE_NAME}/{file_name}'
-
     FILE_FORMAT = (
         FORMAT_NAME = {DATABASE}.{SCHEMA}.{FILE_FORMAT_NAME}
     )
-
     MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE;
     """
 
     session.sql(query).collect()
 
-    print(f"Data loaded into '{table_name}'.")
+    print(f"Loaded {table_name}")
