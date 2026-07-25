@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: LOAN_DEFAULT_DB
+    schema: BRONZE
+
+    tables:
+      - name: ACCEPTED_LOANS
+      - name: REJECTED_LOANS
