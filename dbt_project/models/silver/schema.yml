@@ -1,0 +1,78 @@
+version: 2
+
+models:
+
+  - name: accepted_loans
+    description: "Cleaned accepted loan applications."
+
+    columns:
+
+      - name: id
+        description: "Unique loan identifier."
+        tests:
+          - unique
+          - not_null
+
+      - name: loan_amnt
+        tests:
+          - not_null
+
+      - name: annual_inc
+        tests:
+          - not_null
+
+      - name: dti
+        tests:
+          - not_null
+
+      - name: revol_util
+        tests:
+          - not_null
+
+      - name: issue_date
+        tests:
+          - not_null
+
+      - name: grade
+        tests:
+          - accepted_values:
+              values:
+                - A
+                - B
+                - C
+                - D
+                - E
+                - F
+                - G
+
+      - name: application_type
+        tests:
+          - accepted_values:
+              values:
+                - INDIVIDUAL
+                - JOINT APP
+
+  - name: rejected_loans
+    description: "Cleaned rejected loan applications."
+
+    columns:
+
+      - name: amount_requested
+        tests:
+          - not_null
+
+      - name: application_date
+        tests:
+          - not_null
+
+      - name: debt_to_income_ratio
+        tests:
+          - not_null
+
+      - name: state
+        tests:
+          - not_null
+
+      - name: employment_length
+
+      - name: risk_score
