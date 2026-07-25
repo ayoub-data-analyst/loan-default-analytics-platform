@@ -36,21 +36,23 @@ models:
       - name: grade
         tests:
           - accepted_values:
-              values:
-                - A
-                - B
-                - C
-                - D
-                - E
-                - F
-                - G
+              arguments:
+                values:
+                  - A
+                  - B
+                  - C
+                  - D
+                  - E
+                  - F
+                  - G
 
       - name: application_type
         tests:
           - accepted_values:
-              values:
-                - INDIVIDUAL
-                - JOINT APP
+              arguments:
+                values:
+                  - INDIVIDUAL
+                  - JOINT APP
 
   - name: rejected_loans
     description: "Cleaned rejected loan applications."

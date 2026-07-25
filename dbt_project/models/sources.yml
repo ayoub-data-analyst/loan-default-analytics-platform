@@ -6,5 +6,8 @@ sources:
     schema: BRONZE
 
     tables:
-      - name: ACCEPTED_LOANS
-      - name: REJECTED_LOANS
+      - name: accepted_loans
+        identifier: ACCEPTED_LOANS
+
+      - name: rejected_loans
+        identifier: REJECTED_LOANS
