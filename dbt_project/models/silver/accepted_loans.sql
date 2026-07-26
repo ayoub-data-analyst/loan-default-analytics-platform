@@ -1,7 +1,3 @@
-{{ config(
-    materialized='table'
-) }}
-
 WITH source AS (
 
     SELECT *
@@ -12,11 +8,6 @@ WITH source AS (
 cleaned AS (
 
     SELECT DISTINCT
-
-        -- =========================
-        -- IDs
-        -- =========================
-        "id" AS id,
 
         -- =========================
         -- Loan Information
@@ -37,7 +28,6 @@ cleaned AS (
         -- =========================
         -- Employment
         -- =========================
-        TRIM("emp_title") AS emp_title,
 
         CASE
             WHEN "emp_length" = '< 1 year' THEN 0
@@ -73,8 +63,6 @@ cleaned AS (
         UPPER(TRIM("loan_status")) AS loan_status,
         UPPER(TRIM("pymnt_plan")) AS pymnt_plan,
         UPPER(TRIM("purpose")) AS purpose,
-        TRIM("title") AS title,
-        UPPER(TRIM("zip_code")) AS zip_code,
         UPPER(TRIM("addr_state")) AS addr_state,
 
         -- =========================
