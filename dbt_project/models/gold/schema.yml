@@ -1,0 +1,265 @@
+version: 2
+
+models:
+
+# DIMENSIONS
+
+  - name: dim_date
+    description: Date dimension table.
+
+    columns:
+      - name: date_key
+        description: Surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: full_date
+        description: Calendar date.
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_state
+    description: State dimension.
+
+    columns:
+      - name: state_key
+        description: Surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: state_code
+        description: State abbreviation.
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_employment
+    description: Employment length dimension.
+
+    columns:
+      - name: employment_key
+        tests:
+          - unique
+          - not_null
+
+      - name: employment_years
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_grade
+    description: Loan grade dimension.
+
+    columns:
+      - name: grade_key
+        tests:
+          - unique
+          - not_null
+
+      - name: grade
+        tests:
+          - not_null
+
+      - name: sub_grade
+        tests:
+          - not_null
+
+  - name: dim_home_ownership
+    description: Home ownership dimension.
+
+    columns:
+      - name: home_ownership_key
+        tests:
+          - unique
+          - not_null
+
+      - name: home_ownership
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_verification
+    description: Verification status dimension.
+
+    columns:
+      - name: verification_key
+        tests:
+          - unique
+          - not_null
+
+      - name: verification_status
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_purpose
+    description: Loan purpose dimension.
+
+    columns:
+      - name: purpose_key
+        tests:
+          - unique
+          - not_null
+
+      - name: purpose
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_application_type
+    description: Application type dimension.
+
+    columns:
+      - name: application_type_key
+        tests:
+          - unique
+          - not_null
+
+      - name: application_type
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_loan_status
+    description: Loan status dimension.
+
+    columns:
+      - name: loan_status_key
+        tests:
+          - unique
+          - not_null
+
+      - name: loan_status
+        tests:
+          - unique
+          - not_null
+
+
+# FACT ACCEPTED LOANS
+
+  - name: fact_accepted_loans
+    description: Fact table containing accepted loans.
+
+    columns:
+
+      - name: accepted_loan_key
+        tests:
+          - unique
+          - not_null
+
+      - name: loan_id
+        tests:
+          - unique
+          - not_null
+
+      - name: issue_date_key
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: earliest_credit_date_key
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: last_payment_date_key
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: next_payment_date_key
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: last_credit_pull_date_key
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: state_key
+        tests:
+          - relationships:
+              to: ref('dim_state')
+              field: state_key
+
+      - name: employment_key
+        tests:
+          - relationships:
+              to: ref('dim_employment')
+              field: employment_key
+
+      - name: grade_key
+        tests:
+          - relationships:
+              to: ref('dim_grade')
+              field: grade_key
+
+      - name: home_ownership_key
+        tests:
+          - relationships:
+              to: ref('dim_home_ownership')
+              field: home_ownership_key
+
+      - name: verification_key
+        tests:
+          - relationships:
+              to: ref('dim_verification')
+              field: verification_key
+
+      - name: purpose_key
+        tests:
+          - relationships:
+              to: ref('dim_purpose')
+              field: purpose_key
+
+      - name: application_type_key
+        tests:
+          - relationships:
+              to: ref('dim_application_type')
+              field: application_type_key
+
+      - name: loan_status_key
+        tests:
+          - relationships:
+              to: ref('dim_loan_status')
+              field: loan_status_key
+
+
+# FACT REJECTED LOANS
+
+  - name: fact_rejected_loans
+    description: Fact table containing rejected loan applications.
+
+    columns:
+
+      - name: rejected_loan_key
+        tests:
+          - unique
+          - not_null
+
+      - name: application_date_key
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: state_key
+        tests:
+          - relationships:
+              to: ref('dim_state')
+              field: state_key
+
+      - name: employment_key
+        tests:
+          - relationships:
+              to: ref('dim_employment')
+              field: employment_key
