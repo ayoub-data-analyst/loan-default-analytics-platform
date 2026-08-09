@@ -7,7 +7,7 @@ from airflow.operators.bash import BashOperator
 with DAG(
     dag_id="loan_default_pipeline",
     start_date=datetime(2026, 1, 1),
-    schedule="@daily",
+    schedule="@weekly",
     catchup=False,
     tags=["loan-default"],
 ) as dag:
