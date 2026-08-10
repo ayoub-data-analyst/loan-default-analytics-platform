@@ -171,7 +171,7 @@ Cette capture montre le schéma entité-relation (ERD) du modèle de données, i
 
 **Titre :** Pipeline Airflow — DAG loan_default_pipeline
 
-![Pipeline Airflow](documentation/airflow-dag.png)
+![Pipeline Airflow](documentation/Pipeline_Airflow.png)
 
 Cette capture montre le DAG `loan_default_pipeline` orchestré par Airflow, qui exécute successivement les étapes `bronze_ingestion`, `dbt_run_silver`, `dbt_run_gold` et `dbt_test`, avec une planification hebdomadaire.
 
