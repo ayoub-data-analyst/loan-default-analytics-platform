@@ -1,7 +1,3 @@
-{{ config(
-    materialized='table'
-) }}
-
 WITH rejected AS (
 
     SELECT
