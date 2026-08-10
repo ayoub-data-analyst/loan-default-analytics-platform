@@ -123,9 +123,7 @@ http://localhost:8080
 
 **Titre :** Vue Exécutive
 
-```md
 ![Vue Exécutive](report/screenshots/01-Vue_Executive.png)
-```
 
 Cette capture montre le tableau de bord exécutif qui synthétise les principaux indicateurs clés (KPI) du portefeuille de prêts pour une lecture rapide par la direction.
 
@@ -133,9 +131,7 @@ Cette capture montre le tableau de bord exécutif qui synthétise les principaux
 
 **Titre :** Analyse du Risque
 
-```md
 ![Analyse du Risque](report/screenshots/02-Analyse_du_Risque.png)
-```
 
 Cette capture montre l'analyse détaillée du risque de défaut de paiement, avec la répartition des prêts selon leur niveau de risque.
 
@@ -143,9 +139,7 @@ Cette capture montre l'analyse détaillée du risque de défaut de paiement, ave
 
 **Titre :** Analyse Client
 
-```md
 ![Analyse Client](report/screenshots/03-Analyse_Client.png)
-```
 
 Cette capture montre le profil des emprunteurs (segmentation, caractéristiques démographiques et comportementales) utilisé pour évaluer le risque de crédit.
 
@@ -153,9 +147,7 @@ Cette capture montre le profil des emprunteurs (segmentation, caractéristiques 
 
 **Titre :** Analyse Financière
 
-```md
 ![Analyse Financière](report/screenshots/04-Analyse_Financier.png)
-```
 
 Cette capture montre les indicateurs financiers du portefeuille de prêts (montants, taux, revenus) permettant d'évaluer la santé financière globale des emprunteurs.
 
@@ -163,9 +155,7 @@ Cette capture montre les indicateurs financiers du portefeuille de prêts (monta
 
 **Titre :** Analyse des Demandes Rejetées
 
-```md
 ![Analyse des Demandes Rejetées](report/screenshots/05-Analyse_des_Demandes_Rejetees.png)
-```
 
 Cette capture montre l'analyse des demandes de prêt rejetées, avec les principaux motifs de refus identifiés.
 
@@ -173,9 +163,7 @@ Cette capture montre l'analyse des demandes de prêt rejetées, avec les princip
 
 **Titre :** Modèle de données (ERD)
 
-```md
 ![Modèle de données ERD](documentation/ERD.png)
-```
 
 Cette capture montre le schéma entité-relation (ERD) du modèle de données, illustrant la structure des tables et leurs relations au sein de l'entrepôt de données.
 
