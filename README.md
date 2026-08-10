@@ -167,6 +167,14 @@ Cette capture montre l'analyse des demandes de prêt rejetées, avec les princip
 
 Cette capture montre le schéma entité-relation (ERD) du modèle de données, illustrant la structure des tables et leurs relations au sein de l'entrepôt de données.
 
+### Capture 7
+
+**Titre :** Pipeline Airflow — DAG loan_default_pipeline
+
+![Pipeline Airflow](documentation/airflow-dag.png)
+
+Cette capture montre le DAG `loan_default_pipeline` orchestré par Airflow, qui exécute successivement les étapes `bronze_ingestion`, `dbt_run_silver`, `dbt_run_gold` et `dbt_test`, avec une planification hebdomadaire.
+
 ---
 
 ## 8. Contribution personnelle
