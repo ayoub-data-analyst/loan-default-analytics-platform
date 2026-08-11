@@ -44,7 +44,7 @@ La solution proposée permet de **centraliser les données de prêts dans une ar
 | Apache Airflow | Orchestration et planification des tâches du pipeline de données |
 | dbt (Data Build Tool) | Transformation, modélisation et documentation des données dans l'entrepôt |
 | Docker | Conteneurisation de l'environnement pour un déploiement reproductible |
-| GitHub Actions | Automatisation de l'intégration continue (CI/CD) |
+| GitHub Actions | Automatisation de l'intégration continue (CI) |
 | Pytest | Tests automatisés de la qualité et de la fiabilité du pipeline |
 
 ---
